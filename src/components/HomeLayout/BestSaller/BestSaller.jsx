@@ -139,7 +139,7 @@ const BestSaller = () => {
               <img
                 src={product.imageUrl}
                 alt=""
-                className="w-full h-60 object-cover rounded-md"
+                className="w-full h-80 object-cover rounded-md"
               />
               <p className="text-[#000000] my-2 font-medium">
                 {product.category}

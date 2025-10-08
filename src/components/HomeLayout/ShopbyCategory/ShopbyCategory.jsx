@@ -48,7 +48,7 @@ const ShopbyCategory = () => {
               <img
                 src={data.imageUrl}
                 alt={data.name}
-                className="w-full h-72 object-cover rounded-md group-hover:scale-105 transition duration-500"
+                className="w-full h-80 object-cover rounded-md group-hover:scale-105 transition duration-500"
               />
 
               {/* black overlay */}
