@@ -3,7 +3,7 @@ import React from "react";
 const OurSkincarePhilosophy = () => {
   return (
     <div className="bg-[#F9E4CB]  mb-12 relative  lg:w-[100vw] lg:right-[9.05vw]">
-      <div className="w-5/6 flex mx-auto">
+      <div className="w-5/6  lg:flex  mx-auto">
         <div className="flex-1 py-24 pr-32">
           <h1 className="text-[32px] text-[#000000CC] font-semibold">
             Our Skincare Philosophy
