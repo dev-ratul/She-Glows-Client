@@ -50,7 +50,7 @@ const Hero = () => {
           <button className=" text-black text-[16px]  py-2 px-3 lg:px-5 rounded-full bg-white">
             Shop Now
           </button>
-          <button className="text-black text-[16px]  py-2 px-3 lg:px-5 rounded-full bg-white">
+          <button className="text-black text-[16px]  py-2 px-3 lg:px-5 rounded-full border text-white">
             Abut Us
           </button>
         </div>
