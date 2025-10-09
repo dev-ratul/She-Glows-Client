@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 // FiSearch, FiUser, FiLogOut, AiOutlineMenu, AiOutlineClose আইকন ব্যবহার করা হয়েছে
-import { FiSearch, FiUser, FiLogOut } from "react-icons/fi";
+import { FiSearch, FiUser, FiLogOut, FiLogIn } from "react-icons/fi";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { Link } from "react-router";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -197,11 +198,18 @@ const Navbar = () => {
                     Order History
                   </a>
                   <div className="my-1 border-t border-gray-100"></div>
+                  <Link
+                    to={'/login'}
+                    className="w-full text-left  text-[#1877F2]  cursor-pointer p-2 rounded-md transition-colors flex items-center gap-2"
+                  >
+                    <FiLogIn /> Log In
+                  </Link>
+                  <div className="my-1 border-t border-gray-100"></div>
                   <button
                     onClick={() => {
                       /* Log out logic here */ toggleUserMenu();
                     }}
-                    className="w-full text-left hover:bg-red-50 text-red-500 hover:text-white cursor-pointer p-2 rounded-md transition-colors flex items-center gap-2"
+                    className="w-full text-left  text-red-500  cursor-pointer p-2 rounded-md transition-colors flex items-center gap-2"
                   >
                     <FiLogOut /> Log Out
                   </button>

@@ -2,6 +2,7 @@ import React from "react";
 import { FaGoogle, FaFacebook, FaInstagram } from "react-icons/fa";
 import { Link } from "react-router";
 
+
 const Footer = () => {
   return (
     <div className="w-5/6 mx-auto mb-10">
