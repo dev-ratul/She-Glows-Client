@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // ✅ react-icons added
+import { Link } from "react-router";
+import useAuth from "../../../hooks/useAuth";
 
 const Login = () => {
+  const {signIn}= useAuth()
   const {
     register,
     handleSubmit,
@@ -11,9 +14,18 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = (data) => {
-    console.log("Form Data Submitted:", data);
-    console.log("Email:", data.email);
-    console.log("Password:", data.password);
+
+    signIn(data.email, data.password)
+      .then(result=>{
+        console.log(result.user)
+      })
+      .catch(error=>{
+        console.log(error)
+      })
+
+
+
+   
   };
 
   return (
@@ -24,12 +36,12 @@ const Login = () => {
         </h1>
         <p className="text-[25px] text-[#00000090]">
           Or
-          <a
-            href="#"
+          <Link
+          to={'/register'}
             className="font-semibold text-gray-900 hover:text-gray-700 ml-1 transition duration-200 border-b border-dotted border-gray-900"
           >
             create a new account
-          </a>
+          </Link>
         </p>
       </div>
 

@@ -69,7 +69,6 @@ const Footer = () => {
             <Link to={"/"}>Privacy Policy</Link>
           </div>
         </div>
-        1
       </div>
       {/* 2nd part */}
       <div className="w-full h-px bg-[#00000033] mb-5"></div>

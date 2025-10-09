@@ -3,18 +3,19 @@ import React, { useState, useRef, useEffect } from "react";
 import { FiSearch, FiUser, FiLogOut, FiLogIn } from "react-icons/fi";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router";
+import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserOpen, setIsUserOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const { user } = useAuth();
+  console.log(user);
 
-  // ইউজার ড্রপডাউনের বাইরে ক্লিক হ্যান্ডেল করার জন্য
   const userRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // যদি ইউজার ড্রপডাউন খোলা থাকে এবং ক্লিকটি ড্রপডাউনের বাইরে হয়
       if (userRef.current && !userRef.current.contains(event.target)) {
         setIsUserOpen(false);
       }
@@ -198,21 +199,24 @@ const Navbar = () => {
                     Order History
                   </a>
                   <div className="my-1 border-t border-gray-100"></div>
-                  <Link
-                    to={'/login'}
-                    className="w-full text-left  text-[#1877F2]  cursor-pointer p-2 rounded-md transition-colors flex items-center gap-2"
-                  >
-                    <FiLogIn /> Log In
-                  </Link>
-                  <div className="my-1 border-t border-gray-100"></div>
-                  <button
-                    onClick={() => {
-                      /* Log out logic here */ toggleUserMenu();
-                    }}
-                    className="w-full text-left  text-red-500  cursor-pointer p-2 rounded-md transition-colors flex items-center gap-2"
-                  >
-                    <FiLogOut /> Log Out
-                  </button>
+
+                  {user ? (
+                    <button
+                      onClick={() => {
+                        /* Log out logic here */ toggleUserMenu();
+                      }}
+                      className="w-full text-left  text-red-500  cursor-pointer p-2 rounded-md transition-colors flex items-center gap-2"
+                    >
+                      <FiLogOut /> Log Out
+                    </button>
+                  ) : (
+                    <Link
+                      to={"/login"}
+                      className="w-full text-left  text-[#1877F2]  cursor-pointer p-2 rounded-md transition-colors flex items-center gap-2"
+                    >
+                      <FiLogIn /> Log In
+                    </Link>
+                  )}
                 </div>
               )}
             </div>
@@ -254,7 +258,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu (Side-nav স্টাইল ব্যবহার করা যেতে পারে, তবে এখানে আপনার কোড অনুসরণ করা হয়েছে) */}
+        {/* Mobile Menu  */}
         <div
           className={`md:hidden bg-white shadow-xl absolute w-full transition-all duration-300 ease-in-out ${
             isMenuOpen
