@@ -5,6 +5,7 @@ import ShopbyCategory from '../ShopbyCategory/ShopbyCategory';
 import NewArrive from '../NewArrive/NewArrive';
 import OurSkincarePhilosophy from '../OurSkincarePhilosophy/OurSkincarePhilosophy';
 import HappyUser from '../HappyUser/HappyUser';
+import JoinOurCommunity from '../JoinOurCommunity/JoinOurCommunity';
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
             <NewArrive></NewArrive>
             <OurSkincarePhilosophy></OurSkincarePhilosophy>
             <HappyUser></HappyUser>
+            <JoinOurCommunity></JoinOurCommunity>
         </div>
     );
 };
