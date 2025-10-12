@@ -7,7 +7,7 @@ import Loading from "../Loading/Loading";
 const BrowProducts = () => {
   const axiosInstance = useAxios();
 
-  const { data: products = [], isLoading } = useQuery({
+  const { data: products = [], isLoading, error } = useQuery({
     queryKey: ["brow-products"],
     queryFn: async () => {
       const result = await axiosInstance.get("/brow-products");
@@ -15,7 +15,10 @@ const BrowProducts = () => {
     },
   });
 
-  if(isLoading) return <Loading></Loading>
+  if(isLoading){
+    return <Loading></Loading>
+  }
+  if (error) return <p>Failed to load products 😢</p>;
 
   return (
     <>
