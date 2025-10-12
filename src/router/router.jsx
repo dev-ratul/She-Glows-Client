@@ -6,6 +6,7 @@ import Register from "../components/Pages/Register/Register";
 import AllProducts from "../components/Pages/AllProducts/AllProducts";
 import FaceProducts from "../components/Pages/FaceProducts/FaceProducts";
 import BrowProducts from "../components/Pages/BrowProducts/BrowProducts";
+import LipProducts from "../components/LipProducts/LipProducts";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
         {
           path: '/brow-products',
           Component: BrowProducts
+        },
+        {
+          path: '/lip-products',
+          Component: LipProducts
         }
     ]
   },

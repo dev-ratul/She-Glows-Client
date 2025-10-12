@@ -1,16 +1,16 @@
 import React from "react";
-import useAxios from "../../../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import { NavLink } from "react-router";
-import Loading from "../Loading/Loading";
+import useAxios from "../../hooks/useAxios";
+import Loading from "../Pages/Loading/Loading";
 
-const FaceProducts = () => {
+const LipProducts = () => {
   const axiosInstance = useAxios();
 
-  const { data: products = [] , error, isLoading} = useQuery({
-    queryKey: ["/face-products"],
+  const { data: products = [], isLoading, error } = useQuery({
+    queryKey: ["lip-products"],
     queryFn: async () => {
-      const result = await axiosInstance.get("/face-products");
+      const result = await axiosInstance.get("/lip-products");
       return result.data;
     },
   });
@@ -127,4 +127,4 @@ const FaceProducts = () => {
   );
 };
 
-export default FaceProducts;
+export default LipProducts;

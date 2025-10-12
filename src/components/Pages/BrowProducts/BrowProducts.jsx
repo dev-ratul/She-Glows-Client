@@ -8,7 +8,7 @@ const BrowProducts = () => {
   const axiosInstance = useAxios();
 
   const { data: products = [], isLoading, error } = useQuery({
-    queryKey: ["brow-products"],
+    queryKey: ["/brow-products"],
     queryFn: async () => {
       const result = await axiosInstance.get("/brow-products");
       return result.data;

@@ -25,20 +25,19 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // মোবাইল মেনু টগল ফাংশন
+
   const toggleMobileMenu = () => {
     setIsMenuOpen(!isMenuOpen);
     setIsUserOpen(false);
     setIsSearchOpen(false);
   };
 
-  // সার্চ টগল ফাংশন
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
     setIsUserOpen(false);
   };
 
-  // ইউজার মেনু টগল ফাংশন
+
   const toggleUserMenu = () => {
     setIsUserOpen(!isUserOpen);
     setIsSearchOpen(false);
@@ -51,13 +50,13 @@ const Navbar = () => {
           {/* Logo + Menu */}
           <div className="flex items-center gap-14">
             {/* Logo */}
-            <a href="#">
+            <Link to={'/'}>
               <img
                 src="https://i.postimg.cc/4Nyzy4fV/Gemini-Generated-Image-f6i1hhf6i1hhf6i1-removebg-preview-Picsart-Background-Remover.png"
                 alt="Logo"
                 className="h-12 w-auto transform scale-250 object-contain"
               />
-            </a>
+            </Link>
 
             {/* Desktop Menu */}
             <ul className="hidden md:flex items-center gap-12 text-[17px] font-medium text-gray-700 h-full">
