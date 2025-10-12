@@ -5,6 +5,7 @@ import Login from "../components/Pages/Login/Login";
 import Register from "../components/Pages/Register/Register";
 import AllProducts from "../components/Pages/AllProducts/AllProducts";
 import FaceProducts from "../components/Pages/FaceProducts/FaceProducts";
+import BrowProducts from "../components/Pages/BrowProducts/BrowProducts";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
         {
           path: '/face-products',
           Component: FaceProducts
+        },
+        {
+          path: '/brow-products',
+          Component: BrowProducts
         }
     ]
   },

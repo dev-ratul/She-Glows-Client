@@ -21,11 +21,6 @@ const Loading = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-pink-500 to-indigo-500 animate-[loadingBar_1.4s_ease-in-out_infinite]"></div>
       </div>
 
-      {/* Text */}
-      <h2 className="text-lg font-semibold tracking-wide">
-        Loading<span className="animate-pulse">...</span>
-      </h2>
-      <p className="text-sm text-gray-500 mt-1">Please wait a moment</p>
 
       <style>{`
         @keyframes loadingBar {
