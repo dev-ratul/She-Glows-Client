@@ -2,12 +2,11 @@ import React from "react";
 
 const Loading = () => {
   return (
-    <div className="h-screen w-full flex flex-col items-center justify-center bg-[#f9fafb] text-gray-800">
+    <div className="h-screen w-full flex flex-col items-center justify-center  text-gray-800">
       {/* Logo Section */}
       <div className="relative flex items-center justify-center w-24 h-24 mb-6">
         <div className="absolute w-24 h-24 rounded-full bg-gradient-to-r from-indigo-500 to-pink-500 opacity-25 blur-2xl animate-pulse"></div>
 
-        {/* 👇 Replace the src below with your own logo URL */}
         <div className="relative h-12 w-auto transform scale-250 object-contain rounded-full    flex items-center justify-center overflow-hidden">
           <img
             src="https://i.postimg.cc/qq25X2X8/Gemini-Generated-Image-f6i1hhf6i1hhf6i1-removebg-preview-Picsart-Background-Remover.png"
@@ -28,7 +27,6 @@ const Loading = () => {
       </h2>
       <p className="text-sm text-gray-500 mt-1">Please wait a moment</p>
 
-      {/* Keyframe Animation */}
       <style>{`
         @keyframes loadingBar {
           0% { transform: translateX(-100%); }
