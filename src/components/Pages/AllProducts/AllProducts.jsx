@@ -7,7 +7,11 @@ import { Link } from "react-router";
 const BestSaller = () => {
   const axiosInstance = useAxios();
 
-  const { data: products = [], isLoading, error } = useQuery({
+  const {
+    data: products = [],
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["all-products"],
     queryFn: async () => {
       const res = await axiosInstance.get("/all-products");
@@ -19,54 +23,64 @@ const BestSaller = () => {
   if (error) return <p>Failed to load products 😢</p>;
 
   return (
-    <div className="my-12">
-        {/* top */}
-        <div className="flex justify-between">
-          <h3 className="text-[24px] font-medium text-[#000000CC]">
-            Bestsellers
-          </h3>
-          <Link
-            to="/all-products"
-            className="flex justify-center items-center text-[24px] font-medium text-[#000000CC]"
-          >
-            View all products <GoArrowRight />
-          </Link>
-        </div>
-
-        {/* bottom */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mt-12">
-          {products.map((product) => (
-            <div key={product.name} className="bg-white rounded-lg p-4 ">
-              <img
-                src={product.images.main}
-                alt=""
-                className="w-full h-80 object-cover rounded-md"
-              />
-              <p className="text-[#000000] my-2 font-medium">
-                {product.category}
-              </p>
-              <h3 className="font-semibold text-[20px] ">
-                {product.name}
-              </h3>
-
-              {/* price design */}
-              <div className="flex items-end text-[40px] pb-3">
-                <span className="font-bold leading-none">
-                  ${String(product.price).charAt(0)}
-                </span>
-                <span className="font-semibold relative top-4 ">
-                  {String(product.price).slice(1)}
-                </span>
-              </div>
-
-              <div className="flex gap-2 text-sm text-gray-600">
-                <p>⭐ {product.ratingAverage}</p>
-                <p>({product.ratingCount})</p>
-              </div>
-            </div>
-          ))}
+    <div className="">
+      {/* top */}
+      <div className="bg-[#F9E4CB] p-3 relative  lg:w-[100vw] lg:right-[9.05vw]">
+        <div className="flex justify-between w-5/6 mx-auto">
+          <div className="flex gap-10 text-[18px] text-[#000000] font-medium">
+            <Link className="font-bold">All Product</Link>
+            <Link>Face</Link>
+            <Link>Brow</Link>
+            <Link>Eye</Link>
+            <Link>Lip</Link>
+            <Link>Sets</Link>
+          </div>
+          <div className="flex items-center gap-2">
+            <label className="font-bold">Sort:</label>
+            <select className="  px-2 py-1 text-[18px]">
+              <option value="featured">Featured</option>
+              <option value="price-low-high">Price: Low to High</option>
+              <option value="price-high-low">Price: High to Low</option>
+              <option value="rating-high-low">Customer Rating</option>
+              <option value="newest">Newest Arrivals</option>
+              <option value="bestselling">Best Selling</option>
+            </select>
+          </div>
         </div>
       </div>
+
+      {/* bottom */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mt-12">
+        {products.map((product) => (
+          <div key={product.name} className="bg-white rounded-lg p-4 ">
+            <img
+              src={product.images.main}
+              alt=""
+              className="w-full h-80 object-cover rounded-md"
+            />
+            <p className="text-[#000000] my-2 font-medium">
+              {product.category}
+            </p>
+            <h3 className="font-semibold text-[20px] ">{product.name}</h3>
+
+            {/* price design */}
+            <div className="flex items-end text-[40px] pb-3">
+              <span className="font-bold leading-none">
+                ${String(product.price).charAt(0)}
+              </span>
+              <span className="font-semibold relative top-4 ">
+                {String(product.price).slice(1)}
+              </span>
+            </div>
+
+            <div className="flex gap-2 text-sm text-gray-600">
+              <p>⭐ {product.ratingAverage}</p>
+              <p>({product.ratingCount})</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 

@@ -45,7 +45,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className=" ">
+    <div className=" mb-20">
       <nav className="bg-white shadow-md fixed w-full top-0 left-0 z-50">
         <div className="lg:max-w-5/6 mx-auto flex items-center justify-between px-6 py-3 h-20">
           {/* Logo + Menu */}
@@ -66,7 +66,7 @@ const Navbar = () => {
                 <button className="hover:text-pink-500 text-[18px] cursor-pointer flex items-center h-full">
                   Skincare ▾
                 </button>
-                {/* ড্রপডাউন মেনুর প্রস্থ বাড়ানো হয়েছে (w-96) এবং flex gap কমানো হয়েছে (gap-8) */}
+                
                 <div className="absolute left-0 top-full pt-2 hidden group-hover/skincare:flex bg-white shadow-lg rounded-xl w-96 p-6 gap-8 z-10 transition-all duration-200 origin-top-left animate-in fade-in zoom-in-95">
                   <div className="flex flex-col gap-2 min-w-[120px]">
                     <a
