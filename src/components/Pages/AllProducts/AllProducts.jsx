@@ -2,7 +2,7 @@ import React from "react";
 import { GoArrowRight } from "react-icons/go";
 import useAxios from "../../../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 
 const BestSaller = () => {
   const axiosInstance = useAxios();
@@ -28,12 +28,59 @@ const BestSaller = () => {
       <div className="bg-[#F9E4CB] p-3 relative  lg:w-[100vw] lg:right-[9.05vw]">
         <div className="flex justify-between w-5/6 mx-auto">
           <div className="flex gap-10 text-[18px] text-[#000000] font-medium">
-            <Link className="font-bold">All Product</Link>
-            <Link>Face</Link>
-            <Link>Brow</Link>
-            <Link>Eye</Link>
-            <Link>Lip</Link>
-            <Link>Sets</Link>
+            <NavLink
+              to="/all-products"
+              className={({ isActive }) =>
+                isActive ? "font-bold text-black" : "text-black"
+              }
+            >
+              All Product
+            </NavLink>
+
+            <NavLink
+              to="/face-products"
+              className={({ isActive }) =>
+                isActive ? "font-bold text-black" : "text-black"
+              }
+            >
+              Face
+            </NavLink>
+
+            <NavLink
+              to="/brow-products"
+              className={({ isActive }) =>
+                isActive ? "font-bold text-black" : "text-black"
+              }
+            >
+              Brow
+            </NavLink>
+
+            <NavLink
+              to="/eye-products"
+              className={({ isActive }) =>
+                isActive ? "font-bold text-black" : "text-black"
+              }
+            >
+              Eye
+            </NavLink>
+
+            <NavLink
+              to="/lip-products"
+              className={({ isActive }) =>
+                isActive ? "font-bold text-black" : "text-black"
+              }
+            >
+              Lip
+            </NavLink>
+
+            <NavLink
+              to="/sets-products"
+              className={({ isActive }) =>
+                isActive ? "font-bold text-black" : "text-black"
+              }
+            >
+              Sets
+            </NavLink>
           </div>
           <div className="flex items-center gap-2">
             <label className="font-bold">Sort:</label>
@@ -87,39 +134,40 @@ const BestSaller = () => {
 export default BestSaller;
 
 // {
-//       "id": "prod-001",
-//       "name": "Velvet Rouge Lipstick - Crimson Bloom",
-//       "shortName": "Velvet Rouge - Crimson",
-//       "category": "Lipstick",
-//       "ratingAverage": 4.8,
-//       "ratingCount": 210,
-//       "price": 49,
-//       "compareAtPrice": 99,
-//       "discountText": "Save 50% right now",
+//       "id": "prod-016",
+//       "name": "Brightening Cleanser - Enzyme",
+//       "shortName": "Enzyme Cleanser",
+//       "category": "Cleansers",
+//       "productArea": "Face",
+//       "ratingAverage": 4.3,
+//       "ratingCount": 132,
+//       "price": 19,
+//       "compareAtPrice": 29,
+//       "discountText": "15% off",
 //       "currency": "USD",
 //       "images": {
-//         "main": "https://images.unsplash.com/photo-1542831371-d531d36971e6?q=80&w=1400&auto=format&fit=crop",
+//         "main": "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=1400&auto=format&fit=crop",
 //         "thumbnails": [
-//           "https://images.unsplash.com/photo-1542831371-d531d36971e6?q=80&w=400&auto=format&fit=crop",
-//           "https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?q=80&w=400&auto=format&fit=crop",
+//           "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=400&auto=format&fit=crop",
 //           "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=400&auto=format&fit=crop",
-//           "https://images.unsplash.com/photo-1536305030016-8a6f45a1b2ff?q=80&w=400&auto=format&fit=crop"
+//           "https://images.unsplash.com/photo-1600180758895-0a5f8a9d8f2b?q=80&w=400&auto=format&fit=crop",
+//           "https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?q=80&w=400&auto=format&fit=crop"
 //         ],
-//         "zoom": "https://images.unsplash.com/photo-1542831371-d531d36971e6?q=80&w=2000&auto=format&fit=crop"
+//         "zoom": "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=2000&auto=format&fit=crop"
 //       },
-//       "shortDescription": "Long-lasting velvet finish lipstick with rich pigmentation and hydration.",
-//       "details": "High-pigment formula with moisturizing emollients for long wear and smooth finish.",
+//       "shortDescription": "Gentle enzyme cleanser to exfoliate and brighten dull skin.",
+//       "details": "Papain and mild surfactants remove dead skin without irritation.",
 //       "theLowdown": [
-//         "Velvet satin finish",
-//         "Up to 8 hours wear",
-//         "Hydrating with Vitamin E",
-//         "Transfer-resistant"
+//         "Brightens",
+//         "Mild exfoliation",
+//         "Non-abrasive",
+//         "Smooth finish"
 //       ],
-//       "whatElse": "Cruelty-free & dermatologically tested.",
+//       "whatElse": "Use 2-3 times weekly.",
 //       "uiExtras": {
 //         "quantityDefault": 1,
 //         "minQuantity": 1,
-//         "maxQuantity": 10,
+//         "maxQuantity": 6,
 //         "inStock": true
 //       }
 //     }
