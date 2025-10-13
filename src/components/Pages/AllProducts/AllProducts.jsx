@@ -20,8 +20,8 @@ const BestSaller = () => {
     },
   });
 
-  if(isLoading){
-    return <Loading></Loading>
+  if (isLoading) {
+    return <Loading></Loading>;
   }
   if (error) return <p>Failed to load products 😢</p>;
 
@@ -103,11 +103,41 @@ const BestSaller = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mt-12">
         {products.map((product) => (
           <div key={product.name} className="bg-white rounded-lg p-4 ">
-            <img
-              src={product.images.main}
-              alt=""
-              className="w-full h-80 object-cover rounded-md"
-            />
+            <div className="relative group w-full">
+              {/* Product Image */}
+              <div className="relative overflow-hidden rounded-md">
+                <img
+                  src={product.images.main}
+                  alt={product.name}
+                  className="w-full h-80 object-cover rounded-md transition-transform duration-300 group-hover:scale-110"
+                />
+              </div>
+
+              {/* Overlay Background (fade effect) */}
+              <div className="absolute inset-0 bg-black/10 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+              {/* Center Button */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button className="bg-white cursor-pointer text-black font-medium flex items-center gap-2 px-4 py-2 rounded-full shadow-md hover:bg-gray-100 transition-all duration-200">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-5 h-5"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M2.25 2.25h1.386c.51 0 .955.343 1.087.835l.383 1.436M7.5 14.25a3 3 0 11-6 0 3 3 0 016 0zm13.5 0a3 3 0 11-6 0 3 3 0 016 0zM3.75 6h16.5l-1.5 6H5.25L3.75 6z"
+                    />
+                  </svg>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
             <p className="text-[#000000] my-2 font-medium">
               {product.category}
             </p>
