@@ -1,12 +1,15 @@
-import React from "react";
-import { GoArrowRight } from "react-icons/go";
-import useAxios from "../../../hooks/useAxios";
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Link, NavLink } from "react-router";
+import useAxios from "../../../hooks/useAxios";
 import Loading from "../Loading/Loading";
+import { NavLink } from "react-router";
 
 const BestSaller = () => {
   const axiosInstance = useAxios();
+
+  // pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 16;
 
   const {
     data: products = [],
@@ -20,15 +23,19 @@ const BestSaller = () => {
     },
   });
 
-  if (isLoading) {
-    return <Loading></Loading>;
-  }
+  if (isLoading) return <Loading />;
   if (error) return <p>Failed to load products 😢</p>;
 
+  // pagination calculation
+  const totalPages = Math.ceil(products.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentProducts = products.slice(startIndex, endIndex);
+
   return (
-    <div className="">
+    <div className="mt-6">
       {/* top */}
-      <div className="bg-[#F9E4CB] p-3 relative  lg:w-[100vw] lg:right-[9.05vw]">
+      <div className="bg-[#F3F2EC] p-3 mb-10 relative  lg:w-[100vw] lg:right-[9.05vw]">
         <div className="flex justify-between w-5/6 mx-auto">
           <div className="flex gap-10 text-[18px] text-[#000000] ">
             <NavLink
@@ -98,13 +105,11 @@ const BestSaller = () => {
           </div>
         </div>
       </div>
-
-      {/* bottom */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mt-12">
-        {products.map((product) => (
-          <div key={product.name} className="bg-white rounded-lg p-4 ">
-            <div className="relative group w-full">
-              {/* Product Image */}
+      {/* product grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {currentProducts.map((product) => (
+          <div key={product.id} className="bg-white rounded-lg p-4">
+            <div className="relative group">
               <div className="relative overflow-hidden rounded-md">
                 <img
                   src={product.images.main}
@@ -113,52 +118,58 @@ const BestSaller = () => {
                 />
               </div>
 
-              {/* Overlay Background (fade effect) */}
-              <div className="absolute inset-0 bg-black/10 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-              {/* Center Button */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <button className="bg-white cursor-pointer text-black font-medium flex items-center gap-2 px-4 py-2 rounded-full shadow-md hover:bg-gray-100 transition-all duration-200">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-5 h-5"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M2.25 2.25h1.386c.51 0 .955.343 1.087.835l.383 1.436M7.5 14.25a3 3 0 11-6 0 3 3 0 016 0zm13.5 0a3 3 0 11-6 0 3 3 0 016 0zM3.75 6h16.5l-1.5 6H5.25L3.75 6z"
-                    />
-                  </svg>
+              <div className="absolute inset-0 bg-black/10 rounded-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <button className="bg-white text-black font-medium px-4 py-2 rounded-full shadow-md hover:bg-gray-100">
                   Add to Cart
                 </button>
               </div>
             </div>
 
-            <p className="text-[#000000] my-2 font-medium">
-              {product.category}
+            <h3 className="font-semibold text-[18px] mt-3">{product.name}</h3>
+            <p className="text-gray-600">${product.price}</p>
+            <p>
+              ⭐ {product.ratingAverage} ({product.ratingCount})
             </p>
-            <h3 className="font-semibold text-[20px] ">{product.name}</h3>
-
-            {/* price design */}
-            <div className="flex items-end text-[40px] pb-3">
-              <span className="font-bold leading-none">
-                ${String(product.price).charAt(0)}
-              </span>
-              <span className="font-semibold relative top-4 ">
-                {String(product.price).slice(1)}
-              </span>
-            </div>
-
-            <div className="flex gap-2 text-sm text-gray-600">
-              <p>⭐ {product.ratingAverage}</p>
-              <p>({product.ratingCount})</p>
-            </div>
           </div>
         ))}
+      </div>
+
+      {/* pagination */}
+      <div className="flex justify-center my-10">
+        <nav className="flex items-center gap-2">
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className="px-3 py-1 border cursor-pointer rounded disabled:opacity-50"
+          >
+            ←
+          </button>
+
+          {Array.from({ length: totalPages }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentPage(i + 1)}
+              className={`px-3 py-1 border rounded cursor-pointer ${
+                currentPage === i + 1
+                  ? "bg-black text-white"
+                  : "hover:bg-gray-100"
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+
+          <button
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            }
+            disabled={currentPage === totalPages}
+            className="px-3 py-1 border cursor-pointer rounded disabled:opacity-50"
+          >
+            →
+          </button>
+        </nav>
       </div>
     </div>
   );
