@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../../hooks/useAxios";
 import Loading from "../Loading/Loading";
 import { NavLink } from "react-router";
+import { toast } from "react-hot-toast";
 
 const BestSaller = () => {
   const axiosInstance = useAxios();
@@ -23,6 +24,20 @@ const BestSaller = () => {
     },
   });
 
+  const handleAddCardData = async (product) => {
+    try {
+      const res = await axiosInstance.post("/add-to-cart", product);
+      if (res.data.success) {
+        toast.success("Added to cart!");
+      } else {
+        toast.error("Something went wrong!");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to add to cart!");
+    }
+  };
+
   if (isLoading) return <Loading />;
   if (error) return <p>Failed to load products 😢</p>;
 
@@ -34,7 +49,6 @@ const BestSaller = () => {
 
   return (
     <div className="mt-6">
-      
       {/* product grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {currentProducts.map((product) => (
@@ -50,7 +64,10 @@ const BestSaller = () => {
 
               <div className="absolute inset-0 bg-black/10 rounded-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <button className="bg-white text-black font-medium px-4 py-2 rounded-full shadow-md hover:bg-gray-100">
+                <button
+                  onClick={() => handleAddCardData(product)} // ✅ এখন শুধু এই product টা পাঠাচ্ছিস
+                  className="bg-white text-black cursor-pointer font-medium px-4 py-2 rounded-full shadow-md hover:bg-gray-100"
+                >
                   Add to Cart
                 </button>
               </div>
