@@ -1,11 +1,13 @@
 import React from "react";
 import { FaGoogle, FaFacebook, FaInstagram } from "react-icons/fa";
 import { Link } from "react-router";
+import JoinOurCommunity from "../../../components/HomeLayout/JoinOurCommunity/JoinOurCommunity"
 
 
 const Footer = () => {
   return (
     <div className="w-5/6 mx-auto mb-10">
+      <JoinOurCommunity/>
       <div className="flex justify-between   items-center mb-12">
         {/* 1st */}
         <div className="flex-1">

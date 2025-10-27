@@ -9,6 +9,7 @@ import SortProductLayout from "../components/SortProductLayout/SortProductLayout
 import FaceProducts from "../components/Pages/FaceProducts/FaceProducts";
 import BrowProducts from "../components/Pages/BrowProducts/BrowProducts";
 import LipProducts from "../components/LipProducts/LipProducts";
+import ViewDetails from "../components/Pages/AllProducts/ViewDetails";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
         Component: Register,
       },
       {
+        path: "product/:id",
+        Component: ViewDetails,
+      },
+      {
         path: "/all-products",
         Component: SortProductLayout,
         children: [
@@ -44,12 +49,15 @@ export const router = createBrowserRouter([
             Component: BrowProducts,
           },
           {
-          path: 'lip-products',
-          Component: LipProducts
-        }
+            path: "lip-products",
+            Component: LipProducts,
+          },
+          {
+            path: "product/:id",
+            Component: ViewDetails,
+          },
         ],
       },
     ],
   },
 ]);
-

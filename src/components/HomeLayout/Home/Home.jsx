@@ -16,7 +16,6 @@ const Home = () => {
             <NewArrive></NewArrive>
             <OurSkincarePhilosophy></OurSkincarePhilosophy>
             <HappyUser></HappyUser>
-            <JoinOurCommunity></JoinOurCommunity>
         </div>
     );
 };

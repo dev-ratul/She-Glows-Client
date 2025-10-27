@@ -12,12 +12,12 @@ const JoinOurCommunity = () => {
           new product <br /> announcements.
         </p>
       </div>
+      
       {/* 2nd div */}
-
       <div className="flex gap-8 justify-center">
         <input
           type="email"
-          class=" px-5 text-base w-2/6 h-12 rounded-full  text-[#1E2A38]  border border-[#00000033] focus:ring-0 placeholder:text-gray-400"
+          className=" px-5 text-base w-2/6 h-12 rounded-full  text-[#1E2A38]  border border-[#00000033] focus:ring-0 placeholder:text-gray-400"
           placeholder="Your email address"
           name="email"
           id="email"

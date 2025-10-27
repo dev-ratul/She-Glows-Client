@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../../hooks/useAxios";
 import Loading from "../Loading/Loading";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import { toast } from "react-hot-toast";
 
 const BestSaller = () => {
@@ -28,7 +28,7 @@ const BestSaller = () => {
     try {
       const res = await axiosInstance.post("/add-to-cart", product);
       if (res.data.success) {
-        toast.success("Added to cart!");
+        console.log('added data{add to card}')
       } else {
         toast.error("Something went wrong!");
       }
@@ -50,9 +50,9 @@ const BestSaller = () => {
   return (
     <div className="mt-6">
       {/* product grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 cursor-pointer lg:grid-cols-4 gap-8">
         {currentProducts.map((product) => (
-          <div key={product.id} className="bg-white rounded-lg p-4">
+          <Link to={`product/${product._id}`} key={product.id} className="bg-white rounded-lg p-4 cursor-pointer">
             <div className="relative group">
               <div className="relative overflow-hidden rounded-md">
                 <img
@@ -65,7 +65,7 @@ const BestSaller = () => {
               <div className="absolute inset-0 bg-black/10 rounded-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                 <button
-                  onClick={() => handleAddCardData(product)} // ✅ এখন শুধু এই product টা পাঠাচ্ছিস
+                  onClick={() => handleAddCardData(product)} // 
                   className="bg-white text-black cursor-pointer font-medium px-4 py-2 rounded-full shadow-md hover:bg-gray-100"
                 >
                   Add to Cart
@@ -78,7 +78,7 @@ const BestSaller = () => {
             <p>
               ⭐ {product.ratingAverage} ({product.ratingCount})
             </p>
-          </div>
+          </Link>
         ))}
       </div>
 
